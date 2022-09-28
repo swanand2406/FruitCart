@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [input, setInput] = useState('');
+  const [budget, setBudget] = useState('');
+
+  const handleChange = event => {
+    setInput(event.target.value);
+
+  };
+
+  const handleClick = event => {
+    event.preventDefault();
+    setBudget(input);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ marginLeft: 20 }}>
+      <h4>Please enter your Budget</h4>
+      <input
+        type="text"
+        id="input"
+        name="input"
+        onChange={handleChange}
+        value={input}
+      />
+      <button onClick={handleClick}>Save</button>
+      <h2>Budget:{budget}</h2>
     </div>
   );
-}
+};
 
 export default App;
